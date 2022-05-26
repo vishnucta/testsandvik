@@ -1,0 +1,951 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="https://w4dwdp30.smr.sap.sandvik.com:443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZC_INBOUND_Q1_CDS" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="ZC_INBOUND_Q1Type" sap:label="WM Inbound Report" sap:semantics="aggregate" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.String" Nullable="false" sap:filterable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="TotaledProperties" Type="Edm.String" sap:aggregation-role="totaled-properties-list" sap:is-annotation="true" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ProofOfDeliveryStatus" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="POD status" sap:creatable="false" sap:updatable="false" sap:value-list="standard"/>
+                <Property Name="Material" Type="Edm.String" MaxLength="40" sap:aggregation-role="dimension" sap:label="Material" sap:creatable="false" sap:updatable="false" sap:value-list="standard"/>
+                <Property Name="MaterialGroup" Type="Edm.String" MaxLength="9" sap:aggregation-role="dimension" sap:label="Material Group" sap:creatable="false" sap:updatable="false" sap:value-list="standard"/>
+                <Property Name="PurchaseOrder" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:label="Purchasing Document" sap:creatable="false" sap:updatable="false" sap:value-list="standard"/>
+                <Property Name="Division" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="Division" sap:creatable="false" sap:updatable="false" sap:value-list="standard"/>
+                <Property Name="PurchaseOrderQuantityUnit" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="Order Unit" sap:creatable="false" sap:updatable="false" sap:value-list="standard" sap:semantics="unit-of-measure"/>
+                <Property Name="ActualGoodsMovementTime" Type="Edm.Time" Precision="0" sap:aggregation-role="dimension" sap:text="ActualGoodsMovementTime_T" sap:label="Goods Issue Time" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ActualGoodsMovementTime_T" Type="Edm.String" MaxLength="10" sap:label="Goods Issue Time (Description)" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="YearMonth" Type="Edm.String" MaxLength="6" sap:aggregation-role="dimension" sap:label="Year Month" sap:creatable="false" sap:updatable="false" sap:value-list="standard"/>
+                <Property Name="Supplier" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:label="Supplier" sap:creatable="false" sap:updatable="false" sap:value-list="standard"/>
+                <Property Name="DeliveryQuantityUnit" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="Sales unit" sap:creatable="false" sap:updatable="false" sap:value-list="standard" sap:semantics="unit-of-measure"/>
+                <Property Name="PurchaseOrderType" Type="Edm.String" MaxLength="6" sap:aggregation-role="dimension" sap:label="Purchase Order Type" sap:creatable="false" sap:updatable="false" sap:value-list="standard"/>
+                <Property Name="DeliveryDocument" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:label="Delivery" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="PurchaseOrderItem" Type="Edm.String" MaxLength="5" sap:aggregation-role="dimension" sap:label="PO Item" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="DeliveryDocumentItem" Type="Edm.String" MaxLength="6" sap:aggregation-role="dimension" sap:label="Item" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="DeliveryDocumentBySupplier" Type="Edm.String" MaxLength="35" sap:aggregation-role="dimension" sap:label="External Delivery ID" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="StorageLocation" Type="Edm.String" MaxLength="4" sap:aggregation-role="dimension" sap:label="Storage Location" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ActualGoodsMovementDate" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:text="ActualGoodsMovementDate_T" sap:label="Act. Gds Mvmnt Date" sap:creatable="false" sap:updatable="false" sap:semantics="yearmonthday"/>
+                <Property Name="ActualGoodsMovementDate_T" Type="Edm.String" MaxLength="10" sap:label="Act. Gds Mvmnt Date (Description)" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="PurchaseOrderCategory" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="Purch. Doc. Category" sap:creatable="false" sap:updatable="false" sap:value-list="standard"/>
+                <Property Name="ShippingCondition" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="Shipping Cond" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="MovementIndicator" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="Movement indicator" sap:creatable="false" sap:updatable="false" sap:value-list="standard"/>
+                <Property Name="DateofReceipt" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:text="DateofReceipt_T" sap:label="Act. Gds Mvmnt Date" sap:creatable="false" sap:updatable="false" sap:semantics="yearmonthday"/>
+                <Property Name="DateofReceipt_T" Type="Edm.String" MaxLength="10" sap:label="Act. Gds Mvmnt Date (Description)" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="DelyPlant" Type="Edm.String" MaxLength="4" sap:aggregation-role="dimension" sap:label="Plant" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="DelySLoc" Type="Edm.String" MaxLength="4" sap:aggregation-role="dimension" sap:label="Storage location" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="FromTS" Type="Edm.String" MaxLength="19" sap:aggregation-role="dimension" sap:label="From TS" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ItemWeightUnit" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="Unit of Weight" sap:creatable="false" sap:updatable="false" sap:value-list="standard" sap:semantics="unit-of-measure"/>
+                <Property Name="MaterialType" Type="Edm.String" MaxLength="4" sap:aggregation-role="dimension" sap:label="Material type" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Plant" Type="Edm.String" MaxLength="4" sap:aggregation-role="dimension" sap:label="Plant" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ShippingType" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="Shipping Type" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ToTS" Type="Edm.String" MaxLength="19" sap:aggregation-role="dimension" sap:label="To TS" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="TZOffSet" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="TimeZone Offset" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="WhseFrom" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="Warehouse Number" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="WhseTo" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="Warehouse Number" sap:creatable="false" sap:updatable="false" sap:value-list="standard"/>
+                <Property Name="LineCount" Type="Edm.Decimal" Precision="42" Scale="0" sap:aggregation-role="measure" sap:creatable="false" sap:filterable="false" sap:text="LineCount_F" sap:updatable="false" sap:label="Line Count"/>
+                <Property Name="LineCount_F" Type="Edm.String" MaxLength="60" sap:label="Line Count (Formatted)" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="OrderQuantity" Type="Edm.Decimal" Precision="42" Scale="3" sap:aggregation-role="measure" sap:creatable="false" sap:filterable="false" sap:text="OrderQuantity_F" sap:unit="PurchaseOrderQuantityUnit" sap:updatable="false" sap:label="Order Quantity"/>
+                <Property Name="OrderQuantity_F" Type="Edm.String" MaxLength="60" sap:label="Order Quantity (Formatted)" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="POItmWeight" Type="Edm.Decimal" Precision="42" Scale="3" sap:aggregation-role="measure" sap:creatable="false" sap:filterable="false" sap:text="POItmWeight_F" sap:unit="ItemWeightUnit" sap:updatable="false" sap:label="POITMWEIGHT"/>
+                <Property Name="POItmWeight_F" Type="Edm.String" MaxLength="60" sap:label="POITMWEIGHT (Formatted)" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="ActualDeliveryQuantity" Type="Edm.Decimal" Precision="42" Scale="3" sap:aggregation-role="measure" sap:creatable="false" sap:filterable="false" sap:text="ActualDeliveryQuantity_F" sap:unit="DeliveryQuantityUnit" sap:updatable="false" sap:label="Delivery Quantity"/>
+                <Property Name="ActualDeliveryQuantity_F" Type="Edm.String" MaxLength="60" sap:label="Delivery Quantity (Formatted)" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="OnTimeCnt" Type="Edm.Decimal" Precision="42" Scale="0" sap:aggregation-role="measure" sap:creatable="false" sap:filterable="false" sap:text="OnTimeCnt_F" sap:updatable="false" sap:label="On Time"/>
+                <Property Name="OnTimeCnt_F" Type="Edm.String" MaxLength="60" sap:label="On Time (Formatted)" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="OnTimePct" Type="Edm.Decimal" Precision="42" Scale="1" sap:aggregation-role="measure" sap:creatable="false" sap:filterable="false" sap:text="OnTimePct_F" sap:updatable="false" sap:label="On Time %"/>
+                <Property Name="OnTimePct_F" Type="Edm.String" MaxLength="60" sap:label="On Time % (Formatted)" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="SameCnt" Type="Edm.Decimal" Precision="42" Scale="0" sap:aggregation-role="measure" sap:creatable="false" sap:filterable="false" sap:text="SameCnt_F" sap:updatable="false" sap:label="Same Day"/>
+                <Property Name="SameCnt_F" Type="Edm.String" MaxLength="60" sap:label="Same Day (Formatted)" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="SamePct" Type="Edm.Decimal" Precision="42" Scale="1" sap:aggregation-role="measure" sap:creatable="false" sap:filterable="false" sap:text="SamePct_F" sap:updatable="false" sap:label="Same Day %"/>
+                <Property Name="SamePct_F" Type="Edm.String" MaxLength="60" sap:label="Same Day % (Formatted)" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="LateCnt" Type="Edm.Decimal" Precision="42" Scale="0" sap:aggregation-role="measure" sap:creatable="false" sap:filterable="false" sap:text="LateCnt_F" sap:updatable="false" sap:label="Late"/>
+                <Property Name="LateCnt_F" Type="Edm.String" MaxLength="60" sap:label="Late (Formatted)" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="LatePct" Type="Edm.Decimal" Precision="42" Scale="1" sap:aggregation-role="measure" sap:creatable="false" sap:filterable="false" sap:text="LatePct_F" sap:updatable="false" sap:label="Late %"/>
+                <Property Name="LatePct_F" Type="Edm.String" MaxLength="60" sap:label="Late % (Formatted)" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="DaysLate" Type="Edm.Decimal" Precision="42" Scale="0" sap:aggregation-role="measure" sap:creatable="false" sap:filterable="false" sap:text="DaysLate_F" sap:updatable="false" sap:label="Days Late"/>
+                <Property Name="DaysLate_F" Type="Edm.String" MaxLength="60" sap:label="Days Late (Formatted)" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="AvgDaysLate" Type="Edm.Decimal" Precision="42" Scale="1" sap:aggregation-role="measure" sap:creatable="false" sap:filterable="false" sap:text="AvgDaysLate_F" sap:updatable="false" sap:label="Avg Days Late"/>
+                <Property Name="AvgDaysLate_F" Type="Edm.String" MaxLength="60" sap:label="Avg Days Late (Formatted)" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="Late1D" Type="Edm.Decimal" Precision="42" Scale="0" sap:aggregation-role="measure" sap:creatable="false" sap:filterable="false" sap:text="Late1D_F" sap:updatable="false" sap:label="Late 1D"/>
+                <Property Name="Late1D_F" Type="Edm.String" MaxLength="60" sap:label="Late 1D (Formatted)" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="Late1DPct" Type="Edm.Decimal" Precision="42" Scale="1" sap:aggregation-role="measure" sap:creatable="false" sap:filterable="false" sap:text="Late1DPct_F" sap:updatable="false" sap:label="Late 1D %"/>
+                <Property Name="Late1DPct_F" Type="Edm.String" MaxLength="60" sap:label="Late 1D % (Formatted)" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="Late3D7" Type="Edm.Decimal" Precision="42" Scale="0" sap:aggregation-role="measure" sap:creatable="false" sap:filterable="false" sap:text="Late3D7_F" sap:updatable="false" sap:label="Late 3-7D"/>
+                <Property Name="Late3D7_F" Type="Edm.String" MaxLength="60" sap:label="Late 3-7D (Formatted)" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="Late3D7Pct" Type="Edm.Decimal" Precision="42" Scale="1" sap:aggregation-role="measure" sap:creatable="false" sap:filterable="false" sap:text="Late3D7Pct_F" sap:updatable="false" sap:label="Late 3-7D %"/>
+                <Property Name="Late3D7Pct_F" Type="Edm.String" MaxLength="60" sap:label="Late 3-7D % (Formatted)" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="Late8D" Type="Edm.Decimal" Precision="42" Scale="0" sap:aggregation-role="measure" sap:creatable="false" sap:filterable="false" sap:text="Late8D_F" sap:updatable="false" sap:label="Late 8D+"/>
+                <Property Name="Late8D_F" Type="Edm.String" MaxLength="60" sap:label="Late 8D+ (Formatted)" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="Late8DPct" Type="Edm.Decimal" Precision="42" Scale="1" sap:aggregation-role="measure" sap:creatable="false" sap:filterable="false" sap:text="Late8DPct_F" sap:updatable="false" sap:label="Late &gt;7D %"/>
+                <Property Name="Late8DPct_F" Type="Edm.String" MaxLength="60" sap:label="Late &gt;7D % (Formatted)" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="MAReturnCnt" Type="Edm.Decimal" Precision="42" Scale="0" sap:aggregation-role="measure" sap:creatable="false" sap:filterable="false" sap:text="MAReturnCnt_F" sap:updatable="false" sap:label="MA Return Cnt"/>
+                <Property Name="MAReturnCnt_F" Type="Edm.String" MaxLength="60" sap:label="MA Return Cnt (Formatted)" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="No_PODCnt" Type="Edm.Decimal" Precision="42" Scale="0" sap:aggregation-role="measure" sap:creatable="false" sap:filterable="false" sap:text="No_PODCnt_F" sap:updatable="false" sap:label="No POD Count"/>
+                <Property Name="No_PODCnt_F" Type="Edm.String" MaxLength="60" sap:label="No POD Count (Formatted)" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <NavigationProperty Name="WhseToDetails" Relationship="ZC_INBOUND_Q1_CDS.WhseToToListOfValues" FromRole="ToRole_WhseToToListOfValues" ToRole="FromRole_WhseToToListOfValues"/>
+                <NavigationProperty Name="DivisionDetails" Relationship="ZC_INBOUND_Q1_CDS.DivisionToListOfValues" FromRole="ToRole_DivisionToListOfValues" ToRole="FromRole_DivisionToListOfValues"/>
+                <NavigationProperty Name="SupplierDetails" Relationship="ZC_INBOUND_Q1_CDS.SupplierToListOfValues" FromRole="ToRole_SupplierToListOfValues" ToRole="FromRole_SupplierToListOfValues"/>
+                <NavigationProperty Name="YearMonthDetails" Relationship="ZC_INBOUND_Q1_CDS.YearMonthToListOfValues" FromRole="ToRole_YearMonthToListOfValues" ToRole="FromRole_YearMonthToListOfValues"/>
+                <NavigationProperty Name="PurchaseOrderTypeDetails" Relationship="ZC_INBOUND_Q1_CDS.PurchaseOrderTypeToListOfValues" FromRole="ToRole_PurchaseOrderTypeToListOfValues" ToRole="FromRole_PurchaseOrderTypeToListOfValues"/>
+            </EntityType>
+            <EntityType Name="WhseTo" sap:label="Warehouse Number" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="WhseTo"/>
+                </Key>
+                <Property Name="WhseTo" Type="Edm.String" Nullable="false" sap:parameter="optional" sap:text="WhseToText" sap:label="Warehouse Number" sap:sortable="false"/>
+                <Property Name="WhseToText" Type="Edm.String" MaxLength="60" sap:label="Warehouse Number (Description) " sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="Division" sap:label="Division" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Division"/>
+                </Key>
+                <Property Name="Division" Type="Edm.String" Nullable="false" sap:parameter="optional" sap:text="DivisionText" sap:label="Division" sap:sortable="false"/>
+                <Property Name="DivisionText" Type="Edm.String" MaxLength="60" sap:label="Division (Description) " sap:sortable="false"/>
+            </EntityType>
+            <EntityType Name="Supplier" sap:label="Supplier" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Supplier"/>
+                </Key>
+                <Property Name="Supplier" Type="Edm.String" Nullable="false" sap:parameter="optional" sap:text="SupplierText" sap:label="Supplier" sap:sortable="false"/>
+                <Property Name="SupplierText" Type="Edm.String" MaxLength="60" sap:label="Supplier (Description) " sap:sortable="false"/>
+            </EntityType>
+            <EntityType Name="YearMonth" sap:label="Year Month" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="YearMonth"/>
+                </Key>
+                <Property Name="YearMonth" Type="Edm.String" Nullable="false" sap:parameter="optional" sap:text="YearMonthText" sap:label="Year Month" sap:sortable="false"/>
+                <Property Name="YearMonthText" Type="Edm.String" MaxLength="60" sap:label="Year Month (Description) " sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="PurchaseOrderType" sap:label="Purchase Order Type" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="PurchaseOrderType"/>
+                </Key>
+                <Property Name="PurchaseOrderType" Type="Edm.String" Nullable="false" sap:parameter="optional" sap:text="PurchaseOrderTypeText" sap:label="Purchase Order Type" sap:sortable="false"/>
+                <Property Name="PurchaseOrderTypeText" Type="Edm.String" MaxLength="60" sap:label="Purchase Order Type (Description) " sap:sortable="false"/>
+            </EntityType>
+            <EntityType Name="ProofOfDeliveryStatus" sap:label="POD status (Master Data)" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ProofOfDeliveryStatus_ID"/>
+                </Key>
+                <Property Name="ProofOfDeliveryStatus_ID" Type="Edm.String" Nullable="false" MaxLength="1" sap:text="ProofOfDeliveryStatusText" sap:label="POD status" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ProofOfDeliveryStatusText" Type="Edm.String" sap:label="POD status (Description)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+            </EntityType>
+            <EntityType Name="ProofOfDeliveryStatusResult" sap:label="POD status (Booked Data)" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ProofOfDeliveryStatus"/>
+                </Key>
+                <Property Name="ProofOfDeliveryStatus" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="POD status" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Material" Type="Edm.String" MaxLength="40" sap:label="Material" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="MaterialGroup" Type="Edm.String" MaxLength="9" sap:label="Material Group" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="PurchaseOrder" Type="Edm.String" MaxLength="10" sap:label="Purchasing Document" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Division" Type="Edm.String" MaxLength="2" sap:label="Division" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="PurchaseOrderQuantityUnit" Type="Edm.String" MaxLength="3" sap:label="Order Unit" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ActualGoodsMovementTime" Type="Edm.String" MaxLength="6" sap:text="ActualGoodsMovementTime_T" sap:label="Goods Issue Time" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ActualGoodsMovementTime_T" Type="Edm.String" sap:label="Goods Issue Time (Description)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="YearMonth" Type="Edm.String" MaxLength="6" sap:label="Year Month" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Supplier" Type="Edm.String" MaxLength="10" sap:label="Supplier" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DeliveryQuantityUnit" Type="Edm.String" MaxLength="3" sap:label="Sales unit" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="PurchaseOrderType" Type="Edm.String" MaxLength="6" sap:label="Purchase Order Type" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DeliveryDocument" Type="Edm.String" MaxLength="10" sap:label="Delivery" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="PurchaseOrderItem" Type="Edm.String" MaxLength="5" sap:label="PO Item" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DeliveryDocumentItem" Type="Edm.String" MaxLength="6" sap:label="Item" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DeliveryDocumentBySupplier" Type="Edm.String" MaxLength="35" sap:label="External Delivery ID" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="StorageLocation" Type="Edm.String" MaxLength="4" sap:label="Storage Location" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ActualGoodsMovementDate" Type="Edm.String" MaxLength="10" sap:text="ActualGoodsMovementDate_T" sap:label="Act. Gds Mvmnt Date" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ActualGoodsMovementDate_T" Type="Edm.String" sap:label="Act. Gds Mvmnt Date (Description)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PurchaseOrderCategory" Type="Edm.String" MaxLength="1" sap:label="Purch. Doc. Category" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ShippingCondition" Type="Edm.String" MaxLength="2" sap:label="Shipping Cond" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="MovementIndicator" Type="Edm.String" MaxLength="1" sap:label="Movement indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DateofReceipt" Type="Edm.String" MaxLength="10" sap:text="DateofReceipt_T" sap:label="Act. Gds Mvmnt Date" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DateofReceipt_T" Type="Edm.String" sap:label="Act. Gds Mvmnt Date (Description)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DelyPlant" Type="Edm.String" MaxLength="4" sap:label="Plant" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DelySLoc" Type="Edm.String" MaxLength="4" sap:label="Storage location" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="FromTS" Type="Edm.String" MaxLength="19" sap:label="From TS" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ItemWeightUnit" Type="Edm.String" MaxLength="3" sap:label="Unit of Weight" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="MaterialType" Type="Edm.String" MaxLength="4" sap:label="Material type" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Plant" Type="Edm.String" MaxLength="4" sap:label="Plant" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ShippingType" Type="Edm.String" MaxLength="2" sap:label="Shipping Type" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ToTS" Type="Edm.String" MaxLength="19" sap:label="To TS" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="TZOffSet" Type="Edm.String" MaxLength="3" sap:label="TimeZone Offset" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="WhseFrom" Type="Edm.String" MaxLength="3" sap:label="Warehouse Number" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="WhseTo" Type="Edm.String" MaxLength="3" sap:label="Warehouse Number" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+            </EntityType>
+            <EntityType Name="Material" sap:label="Material (Master Data)" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Material_ID"/>
+                </Key>
+                <Property Name="Material_ID" Type="Edm.String" Nullable="false" MaxLength="40" sap:text="MaterialText" sap:label="Material" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="MaterialText" Type="Edm.String" sap:label="Material (Description)" sap:creatable="false" sap:updatable="false"/>
+            </EntityType>
+            <EntityType Name="MaterialResult" sap:label="Material (Booked Data)" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Material"/>
+                </Key>
+                <Property Name="Material" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Material" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ProofOfDeliveryStatus" Type="Edm.String" MaxLength="1" sap:label="POD status" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="MaterialGroup" Type="Edm.String" MaxLength="9" sap:label="Material Group" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="PurchaseOrder" Type="Edm.String" MaxLength="10" sap:label="Purchasing Document" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Division" Type="Edm.String" MaxLength="2" sap:label="Division" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="PurchaseOrderQuantityUnit" Type="Edm.String" MaxLength="3" sap:label="Order Unit" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ActualGoodsMovementTime" Type="Edm.String" MaxLength="6" sap:text="ActualGoodsMovementTime_T" sap:label="Goods Issue Time" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ActualGoodsMovementTime_T" Type="Edm.String" sap:label="Goods Issue Time (Description)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="YearMonth" Type="Edm.String" MaxLength="6" sap:label="Year Month" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Supplier" Type="Edm.String" MaxLength="10" sap:label="Supplier" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DeliveryQuantityUnit" Type="Edm.String" MaxLength="3" sap:label="Sales unit" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="PurchaseOrderType" Type="Edm.String" MaxLength="6" sap:label="Purchase Order Type" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DeliveryDocument" Type="Edm.String" MaxLength="10" sap:label="Delivery" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="PurchaseOrderItem" Type="Edm.String" MaxLength="5" sap:label="PO Item" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DeliveryDocumentItem" Type="Edm.String" MaxLength="6" sap:label="Item" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DeliveryDocumentBySupplier" Type="Edm.String" MaxLength="35" sap:label="External Delivery ID" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="StorageLocation" Type="Edm.String" MaxLength="4" sap:label="Storage Location" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ActualGoodsMovementDate" Type="Edm.String" MaxLength="10" sap:text="ActualGoodsMovementDate_T" sap:label="Act. Gds Mvmnt Date" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ActualGoodsMovementDate_T" Type="Edm.String" sap:label="Act. Gds Mvmnt Date (Description)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PurchaseOrderCategory" Type="Edm.String" MaxLength="1" sap:label="Purch. Doc. Category" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ShippingCondition" Type="Edm.String" MaxLength="2" sap:label="Shipping Cond" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="MovementIndicator" Type="Edm.String" MaxLength="1" sap:label="Movement indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DateofReceipt" Type="Edm.String" MaxLength="10" sap:text="DateofReceipt_T" sap:label="Act. Gds Mvmnt Date" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DateofReceipt_T" Type="Edm.String" sap:label="Act. Gds Mvmnt Date (Description)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DelyPlant" Type="Edm.String" MaxLength="4" sap:label="Plant" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DelySLoc" Type="Edm.String" MaxLength="4" sap:label="Storage location" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="FromTS" Type="Edm.String" MaxLength="19" sap:label="From TS" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ItemWeightUnit" Type="Edm.String" MaxLength="3" sap:label="Unit of Weight" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="MaterialType" Type="Edm.String" MaxLength="4" sap:label="Material type" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Plant" Type="Edm.String" MaxLength="4" sap:label="Plant" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ShippingType" Type="Edm.String" MaxLength="2" sap:label="Shipping Type" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ToTS" Type="Edm.String" MaxLength="19" sap:label="To TS" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="TZOffSet" Type="Edm.String" MaxLength="3" sap:label="TimeZone Offset" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="WhseFrom" Type="Edm.String" MaxLength="3" sap:label="Warehouse Number" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="WhseTo" Type="Edm.String" MaxLength="3" sap:label="Warehouse Number" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+            </EntityType>
+            <EntityType Name="MaterialGroup" sap:label="Material Group (Master Data)" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="MaterialGroup_ID"/>
+                </Key>
+                <Property Name="MaterialGroup_ID" Type="Edm.String" Nullable="false" MaxLength="9" sap:text="MaterialGroupText" sap:label="Material Group" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="MaterialGroupText" Type="Edm.String" sap:label="Material Group (Description)" sap:creatable="false" sap:updatable="false"/>
+            </EntityType>
+            <EntityType Name="MaterialGroupResult" sap:label="Material Group (Booked Data)" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="MaterialGroup"/>
+                </Key>
+                <Property Name="MaterialGroup" Type="Edm.String" Nullable="false" MaxLength="9" sap:label="Material Group" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ProofOfDeliveryStatus" Type="Edm.String" MaxLength="1" sap:label="POD status" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Material" Type="Edm.String" MaxLength="40" sap:label="Material" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="PurchaseOrder" Type="Edm.String" MaxLength="10" sap:label="Purchasing Document" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Division" Type="Edm.String" MaxLength="2" sap:label="Division" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="PurchaseOrderQuantityUnit" Type="Edm.String" MaxLength="3" sap:label="Order Unit" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ActualGoodsMovementTime" Type="Edm.String" MaxLength="6" sap:text="ActualGoodsMovementTime_T" sap:label="Goods Issue Time" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ActualGoodsMovementTime_T" Type="Edm.String" sap:label="Goods Issue Time (Description)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="YearMonth" Type="Edm.String" MaxLength="6" sap:label="Year Month" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Supplier" Type="Edm.String" MaxLength="10" sap:label="Supplier" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DeliveryQuantityUnit" Type="Edm.String" MaxLength="3" sap:label="Sales unit" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="PurchaseOrderType" Type="Edm.String" MaxLength="6" sap:label="Purchase Order Type" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DeliveryDocument" Type="Edm.String" MaxLength="10" sap:label="Delivery" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="PurchaseOrderItem" Type="Edm.String" MaxLength="5" sap:label="PO Item" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DeliveryDocumentItem" Type="Edm.String" MaxLength="6" sap:label="Item" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DeliveryDocumentBySupplier" Type="Edm.String" MaxLength="35" sap:label="External Delivery ID" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="StorageLocation" Type="Edm.String" MaxLength="4" sap:label="Storage Location" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ActualGoodsMovementDate" Type="Edm.String" MaxLength="10" sap:text="ActualGoodsMovementDate_T" sap:label="Act. Gds Mvmnt Date" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ActualGoodsMovementDate_T" Type="Edm.String" sap:label="Act. Gds Mvmnt Date (Description)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PurchaseOrderCategory" Type="Edm.String" MaxLength="1" sap:label="Purch. Doc. Category" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ShippingCondition" Type="Edm.String" MaxLength="2" sap:label="Shipping Cond" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="MovementIndicator" Type="Edm.String" MaxLength="1" sap:label="Movement indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DateofReceipt" Type="Edm.String" MaxLength="10" sap:text="DateofReceipt_T" sap:label="Act. Gds Mvmnt Date" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DateofReceipt_T" Type="Edm.String" sap:label="Act. Gds Mvmnt Date (Description)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DelyPlant" Type="Edm.String" MaxLength="4" sap:label="Plant" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DelySLoc" Type="Edm.String" MaxLength="4" sap:label="Storage location" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="FromTS" Type="Edm.String" MaxLength="19" sap:label="From TS" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ItemWeightUnit" Type="Edm.String" MaxLength="3" sap:label="Unit of Weight" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="MaterialType" Type="Edm.String" MaxLength="4" sap:label="Material type" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Plant" Type="Edm.String" MaxLength="4" sap:label="Plant" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ShippingType" Type="Edm.String" MaxLength="2" sap:label="Shipping Type" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ToTS" Type="Edm.String" MaxLength="19" sap:label="To TS" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="TZOffSet" Type="Edm.String" MaxLength="3" sap:label="TimeZone Offset" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="WhseFrom" Type="Edm.String" MaxLength="3" sap:label="Warehouse Number" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="WhseTo" Type="Edm.String" MaxLength="3" sap:label="Warehouse Number" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+            </EntityType>
+            <EntityType Name="PurchaseOrder" sap:label="Purchasing Document (Master Data)" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="PurchaseOrder_ID"/>
+                </Key>
+                <Property Name="PurchaseOrder_ID" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Purchasing Document" sap:creatable="false" sap:updatable="false"/>
+            </EntityType>
+            <EntityType Name="PurchaseOrderResult" sap:label="Purchasing Document (Booked Data)" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="PurchaseOrder"/>
+                </Key>
+                <Property Name="PurchaseOrder" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Purchasing Document" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ProofOfDeliveryStatus" Type="Edm.String" MaxLength="1" sap:label="POD status" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Material" Type="Edm.String" MaxLength="40" sap:label="Material" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="MaterialGroup" Type="Edm.String" MaxLength="9" sap:label="Material Group" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Division" Type="Edm.String" MaxLength="2" sap:label="Division" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="PurchaseOrderQuantityUnit" Type="Edm.String" MaxLength="3" sap:label="Order Unit" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ActualGoodsMovementTime" Type="Edm.String" MaxLength="6" sap:text="ActualGoodsMovementTime_T" sap:label="Goods Issue Time" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ActualGoodsMovementTime_T" Type="Edm.String" sap:label="Goods Issue Time (Description)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="YearMonth" Type="Edm.String" MaxLength="6" sap:label="Year Month" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Supplier" Type="Edm.String" MaxLength="10" sap:label="Supplier" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DeliveryQuantityUnit" Type="Edm.String" MaxLength="3" sap:label="Sales unit" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="PurchaseOrderType" Type="Edm.String" MaxLength="6" sap:label="Purchase Order Type" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DeliveryDocument" Type="Edm.String" MaxLength="10" sap:label="Delivery" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="PurchaseOrderItem" Type="Edm.String" MaxLength="5" sap:label="PO Item" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DeliveryDocumentItem" Type="Edm.String" MaxLength="6" sap:label="Item" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DeliveryDocumentBySupplier" Type="Edm.String" MaxLength="35" sap:label="External Delivery ID" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="StorageLocation" Type="Edm.String" MaxLength="4" sap:label="Storage Location" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ActualGoodsMovementDate" Type="Edm.String" MaxLength="10" sap:text="ActualGoodsMovementDate_T" sap:label="Act. Gds Mvmnt Date" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ActualGoodsMovementDate_T" Type="Edm.String" sap:label="Act. Gds Mvmnt Date (Description)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PurchaseOrderCategory" Type="Edm.String" MaxLength="1" sap:label="Purch. Doc. Category" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ShippingCondition" Type="Edm.String" MaxLength="2" sap:label="Shipping Cond" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="MovementIndicator" Type="Edm.String" MaxLength="1" sap:label="Movement indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DateofReceipt" Type="Edm.String" MaxLength="10" sap:text="DateofReceipt_T" sap:label="Act. Gds Mvmnt Date" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DateofReceipt_T" Type="Edm.String" sap:label="Act. Gds Mvmnt Date (Description)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DelyPlant" Type="Edm.String" MaxLength="4" sap:label="Plant" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DelySLoc" Type="Edm.String" MaxLength="4" sap:label="Storage location" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="FromTS" Type="Edm.String" MaxLength="19" sap:label="From TS" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ItemWeightUnit" Type="Edm.String" MaxLength="3" sap:label="Unit of Weight" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="MaterialType" Type="Edm.String" MaxLength="4" sap:label="Material type" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Plant" Type="Edm.String" MaxLength="4" sap:label="Plant" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ShippingType" Type="Edm.String" MaxLength="2" sap:label="Shipping Type" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ToTS" Type="Edm.String" MaxLength="19" sap:label="To TS" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="TZOffSet" Type="Edm.String" MaxLength="3" sap:label="TimeZone Offset" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="WhseFrom" Type="Edm.String" MaxLength="3" sap:label="Warehouse Number" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="WhseTo" Type="Edm.String" MaxLength="3" sap:label="Warehouse Number" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+            </EntityType>
+            <EntityType Name="PurchaseOrderQuantityUnit" sap:label="Order Unit (Master Data)" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="PurchaseOrderQuantityUnit_ID"/>
+                </Key>
+                <Property Name="PurchaseOrderQuantityUnit_ID" Type="Edm.String" Nullable="false" MaxLength="3" sap:text="PurchaseOrderQuantityUnitText" sap:label="Order Unit" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="PurchaseOrderQuantityUnitText" Type="Edm.String" sap:label="Order Unit (Description)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+            </EntityType>
+            <EntityType Name="PurchaseOrderQuantityUnitResult" sap:label="Order Unit (Booked Data)" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="PurchaseOrderQuantityUnit"/>
+                </Key>
+                <Property Name="PurchaseOrderQuantityUnit" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Order Unit" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ProofOfDeliveryStatus" Type="Edm.String" MaxLength="1" sap:label="POD status" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Material" Type="Edm.String" MaxLength="40" sap:label="Material" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="MaterialGroup" Type="Edm.String" MaxLength="9" sap:label="Material Group" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="PurchaseOrder" Type="Edm.String" MaxLength="10" sap:label="Purchasing Document" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Division" Type="Edm.String" MaxLength="2" sap:label="Division" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ActualGoodsMovementTime" Type="Edm.String" MaxLength="6" sap:text="ActualGoodsMovementTime_T" sap:label="Goods Issue Time" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ActualGoodsMovementTime_T" Type="Edm.String" sap:label="Goods Issue Time (Description)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="YearMonth" Type="Edm.String" MaxLength="6" sap:label="Year Month" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Supplier" Type="Edm.String" MaxLength="10" sap:label="Supplier" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DeliveryQuantityUnit" Type="Edm.String" MaxLength="3" sap:label="Sales unit" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="PurchaseOrderType" Type="Edm.String" MaxLength="6" sap:label="Purchase Order Type" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DeliveryDocument" Type="Edm.String" MaxLength="10" sap:label="Delivery" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="PurchaseOrderItem" Type="Edm.String" MaxLength="5" sap:label="PO Item" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DeliveryDocumentItem" Type="Edm.String" MaxLength="6" sap:label="Item" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DeliveryDocumentBySupplier" Type="Edm.String" MaxLength="35" sap:label="External Delivery ID" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="StorageLocation" Type="Edm.String" MaxLength="4" sap:label="Storage Location" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ActualGoodsMovementDate" Type="Edm.String" MaxLength="10" sap:text="ActualGoodsMovementDate_T" sap:label="Act. Gds Mvmnt Date" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ActualGoodsMovementDate_T" Type="Edm.String" sap:label="Act. Gds Mvmnt Date (Description)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PurchaseOrderCategory" Type="Edm.String" MaxLength="1" sap:label="Purch. Doc. Category" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ShippingCondition" Type="Edm.String" MaxLength="2" sap:label="Shipping Cond" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="MovementIndicator" Type="Edm.String" MaxLength="1" sap:label="Movement indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DateofReceipt" Type="Edm.String" MaxLength="10" sap:text="DateofReceipt_T" sap:label="Act. Gds Mvmnt Date" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DateofReceipt_T" Type="Edm.String" sap:label="Act. Gds Mvmnt Date (Description)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DelyPlant" Type="Edm.String" MaxLength="4" sap:label="Plant" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DelySLoc" Type="Edm.String" MaxLength="4" sap:label="Storage location" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="FromTS" Type="Edm.String" MaxLength="19" sap:label="From TS" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ItemWeightUnit" Type="Edm.String" MaxLength="3" sap:label="Unit of Weight" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="MaterialType" Type="Edm.String" MaxLength="4" sap:label="Material type" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Plant" Type="Edm.String" MaxLength="4" sap:label="Plant" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ShippingType" Type="Edm.String" MaxLength="2" sap:label="Shipping Type" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ToTS" Type="Edm.String" MaxLength="19" sap:label="To TS" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="TZOffSet" Type="Edm.String" MaxLength="3" sap:label="TimeZone Offset" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="WhseFrom" Type="Edm.String" MaxLength="3" sap:label="Warehouse Number" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="WhseTo" Type="Edm.String" MaxLength="3" sap:label="Warehouse Number" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+            </EntityType>
+            <EntityType Name="DeliveryQuantityUnit" sap:label="Sales unit (Master Data)" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="DeliveryQuantityUnit_ID"/>
+                </Key>
+                <Property Name="DeliveryQuantityUnit_ID" Type="Edm.String" Nullable="false" MaxLength="3" sap:text="DeliveryQuantityUnitText" sap:label="Sales unit" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DeliveryQuantityUnitText" Type="Edm.String" sap:label="Sales unit (Description)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+            </EntityType>
+            <EntityType Name="DeliveryQuantityUnitResult" sap:label="Sales unit (Booked Data)" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="DeliveryQuantityUnit"/>
+                </Key>
+                <Property Name="DeliveryQuantityUnit" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Sales unit" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ProofOfDeliveryStatus" Type="Edm.String" MaxLength="1" sap:label="POD status" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Material" Type="Edm.String" MaxLength="40" sap:label="Material" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="MaterialGroup" Type="Edm.String" MaxLength="9" sap:label="Material Group" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="PurchaseOrder" Type="Edm.String" MaxLength="10" sap:label="Purchasing Document" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Division" Type="Edm.String" MaxLength="2" sap:label="Division" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="PurchaseOrderQuantityUnit" Type="Edm.String" MaxLength="3" sap:label="Order Unit" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ActualGoodsMovementTime" Type="Edm.String" MaxLength="6" sap:text="ActualGoodsMovementTime_T" sap:label="Goods Issue Time" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ActualGoodsMovementTime_T" Type="Edm.String" sap:label="Goods Issue Time (Description)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="YearMonth" Type="Edm.String" MaxLength="6" sap:label="Year Month" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Supplier" Type="Edm.String" MaxLength="10" sap:label="Supplier" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="PurchaseOrderType" Type="Edm.String" MaxLength="6" sap:label="Purchase Order Type" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DeliveryDocument" Type="Edm.String" MaxLength="10" sap:label="Delivery" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="PurchaseOrderItem" Type="Edm.String" MaxLength="5" sap:label="PO Item" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DeliveryDocumentItem" Type="Edm.String" MaxLength="6" sap:label="Item" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DeliveryDocumentBySupplier" Type="Edm.String" MaxLength="35" sap:label="External Delivery ID" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="StorageLocation" Type="Edm.String" MaxLength="4" sap:label="Storage Location" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ActualGoodsMovementDate" Type="Edm.String" MaxLength="10" sap:text="ActualGoodsMovementDate_T" sap:label="Act. Gds Mvmnt Date" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ActualGoodsMovementDate_T" Type="Edm.String" sap:label="Act. Gds Mvmnt Date (Description)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PurchaseOrderCategory" Type="Edm.String" MaxLength="1" sap:label="Purch. Doc. Category" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ShippingCondition" Type="Edm.String" MaxLength="2" sap:label="Shipping Cond" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="MovementIndicator" Type="Edm.String" MaxLength="1" sap:label="Movement indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DateofReceipt" Type="Edm.String" MaxLength="10" sap:text="DateofReceipt_T" sap:label="Act. Gds Mvmnt Date" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DateofReceipt_T" Type="Edm.String" sap:label="Act. Gds Mvmnt Date (Description)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DelyPlant" Type="Edm.String" MaxLength="4" sap:label="Plant" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DelySLoc" Type="Edm.String" MaxLength="4" sap:label="Storage location" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="FromTS" Type="Edm.String" MaxLength="19" sap:label="From TS" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ItemWeightUnit" Type="Edm.String" MaxLength="3" sap:label="Unit of Weight" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="MaterialType" Type="Edm.String" MaxLength="4" sap:label="Material type" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Plant" Type="Edm.String" MaxLength="4" sap:label="Plant" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ShippingType" Type="Edm.String" MaxLength="2" sap:label="Shipping Type" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ToTS" Type="Edm.String" MaxLength="19" sap:label="To TS" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="TZOffSet" Type="Edm.String" MaxLength="3" sap:label="TimeZone Offset" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="WhseFrom" Type="Edm.String" MaxLength="3" sap:label="Warehouse Number" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="WhseTo" Type="Edm.String" MaxLength="3" sap:label="Warehouse Number" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+            </EntityType>
+            <EntityType Name="PurchaseOrderCategory" sap:label="Purch. Doc. Category (Master Data)" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="PurchaseOrderCategory_ID"/>
+                </Key>
+                <Property Name="PurchaseOrderCategory_ID" Type="Edm.String" Nullable="false" MaxLength="1" sap:text="PurchaseOrderCategoryText" sap:label="Purch. Doc. Category" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="PurchaseOrderCategoryText" Type="Edm.String" sap:label="Purch. Doc. Category (Description)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+            </EntityType>
+            <EntityType Name="PurchaseOrderCategoryResult" sap:label="Purch. Doc. Category (Booked Data)" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="PurchaseOrderCategory"/>
+                </Key>
+                <Property Name="PurchaseOrderCategory" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Purch. Doc. Category" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ProofOfDeliveryStatus" Type="Edm.String" MaxLength="1" sap:label="POD status" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Material" Type="Edm.String" MaxLength="40" sap:label="Material" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="MaterialGroup" Type="Edm.String" MaxLength="9" sap:label="Material Group" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="PurchaseOrder" Type="Edm.String" MaxLength="10" sap:label="Purchasing Document" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Division" Type="Edm.String" MaxLength="2" sap:label="Division" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="PurchaseOrderQuantityUnit" Type="Edm.String" MaxLength="3" sap:label="Order Unit" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ActualGoodsMovementTime" Type="Edm.String" MaxLength="6" sap:text="ActualGoodsMovementTime_T" sap:label="Goods Issue Time" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ActualGoodsMovementTime_T" Type="Edm.String" sap:label="Goods Issue Time (Description)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="YearMonth" Type="Edm.String" MaxLength="6" sap:label="Year Month" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Supplier" Type="Edm.String" MaxLength="10" sap:label="Supplier" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DeliveryQuantityUnit" Type="Edm.String" MaxLength="3" sap:label="Sales unit" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="PurchaseOrderType" Type="Edm.String" MaxLength="6" sap:label="Purchase Order Type" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DeliveryDocument" Type="Edm.String" MaxLength="10" sap:label="Delivery" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="PurchaseOrderItem" Type="Edm.String" MaxLength="5" sap:label="PO Item" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DeliveryDocumentItem" Type="Edm.String" MaxLength="6" sap:label="Item" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DeliveryDocumentBySupplier" Type="Edm.String" MaxLength="35" sap:label="External Delivery ID" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="StorageLocation" Type="Edm.String" MaxLength="4" sap:label="Storage Location" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ActualGoodsMovementDate" Type="Edm.String" MaxLength="10" sap:text="ActualGoodsMovementDate_T" sap:label="Act. Gds Mvmnt Date" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ActualGoodsMovementDate_T" Type="Edm.String" sap:label="Act. Gds Mvmnt Date (Description)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ShippingCondition" Type="Edm.String" MaxLength="2" sap:label="Shipping Cond" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="MovementIndicator" Type="Edm.String" MaxLength="1" sap:label="Movement indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DateofReceipt" Type="Edm.String" MaxLength="10" sap:text="DateofReceipt_T" sap:label="Act. Gds Mvmnt Date" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DateofReceipt_T" Type="Edm.String" sap:label="Act. Gds Mvmnt Date (Description)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DelyPlant" Type="Edm.String" MaxLength="4" sap:label="Plant" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DelySLoc" Type="Edm.String" MaxLength="4" sap:label="Storage location" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="FromTS" Type="Edm.String" MaxLength="19" sap:label="From TS" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ItemWeightUnit" Type="Edm.String" MaxLength="3" sap:label="Unit of Weight" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="MaterialType" Type="Edm.String" MaxLength="4" sap:label="Material type" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Plant" Type="Edm.String" MaxLength="4" sap:label="Plant" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ShippingType" Type="Edm.String" MaxLength="2" sap:label="Shipping Type" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ToTS" Type="Edm.String" MaxLength="19" sap:label="To TS" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="TZOffSet" Type="Edm.String" MaxLength="3" sap:label="TimeZone Offset" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="WhseFrom" Type="Edm.String" MaxLength="3" sap:label="Warehouse Number" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="WhseTo" Type="Edm.String" MaxLength="3" sap:label="Warehouse Number" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+            </EntityType>
+            <EntityType Name="MovementIndicator" sap:label="Movement indicator (Master Data)" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="MovementIndicator_ID"/>
+                </Key>
+                <Property Name="MovementIndicator_ID" Type="Edm.String" Nullable="false" MaxLength="1" sap:text="MovementIndicatorText" sap:label="Movement indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="MovementIndicatorText" Type="Edm.String" sap:label="Movement indicator (Description)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+            </EntityType>
+            <EntityType Name="MovementIndicatorResult" sap:label="Movement indicator (Booked Data)" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="MovementIndicator"/>
+                </Key>
+                <Property Name="MovementIndicator" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Movement indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ProofOfDeliveryStatus" Type="Edm.String" MaxLength="1" sap:label="POD status" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Material" Type="Edm.String" MaxLength="40" sap:label="Material" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="MaterialGroup" Type="Edm.String" MaxLength="9" sap:label="Material Group" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="PurchaseOrder" Type="Edm.String" MaxLength="10" sap:label="Purchasing Document" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Division" Type="Edm.String" MaxLength="2" sap:label="Division" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="PurchaseOrderQuantityUnit" Type="Edm.String" MaxLength="3" sap:label="Order Unit" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ActualGoodsMovementTime" Type="Edm.String" MaxLength="6" sap:text="ActualGoodsMovementTime_T" sap:label="Goods Issue Time" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ActualGoodsMovementTime_T" Type="Edm.String" sap:label="Goods Issue Time (Description)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="YearMonth" Type="Edm.String" MaxLength="6" sap:label="Year Month" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Supplier" Type="Edm.String" MaxLength="10" sap:label="Supplier" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DeliveryQuantityUnit" Type="Edm.String" MaxLength="3" sap:label="Sales unit" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="PurchaseOrderType" Type="Edm.String" MaxLength="6" sap:label="Purchase Order Type" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DeliveryDocument" Type="Edm.String" MaxLength="10" sap:label="Delivery" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="PurchaseOrderItem" Type="Edm.String" MaxLength="5" sap:label="PO Item" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DeliveryDocumentItem" Type="Edm.String" MaxLength="6" sap:label="Item" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DeliveryDocumentBySupplier" Type="Edm.String" MaxLength="35" sap:label="External Delivery ID" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="StorageLocation" Type="Edm.String" MaxLength="4" sap:label="Storage Location" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ActualGoodsMovementDate" Type="Edm.String" MaxLength="10" sap:text="ActualGoodsMovementDate_T" sap:label="Act. Gds Mvmnt Date" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ActualGoodsMovementDate_T" Type="Edm.String" sap:label="Act. Gds Mvmnt Date (Description)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PurchaseOrderCategory" Type="Edm.String" MaxLength="1" sap:label="Purch. Doc. Category" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ShippingCondition" Type="Edm.String" MaxLength="2" sap:label="Shipping Cond" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DateofReceipt" Type="Edm.String" MaxLength="10" sap:text="DateofReceipt_T" sap:label="Act. Gds Mvmnt Date" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DateofReceipt_T" Type="Edm.String" sap:label="Act. Gds Mvmnt Date (Description)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DelyPlant" Type="Edm.String" MaxLength="4" sap:label="Plant" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DelySLoc" Type="Edm.String" MaxLength="4" sap:label="Storage location" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="FromTS" Type="Edm.String" MaxLength="19" sap:label="From TS" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ItemWeightUnit" Type="Edm.String" MaxLength="3" sap:label="Unit of Weight" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="MaterialType" Type="Edm.String" MaxLength="4" sap:label="Material type" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Plant" Type="Edm.String" MaxLength="4" sap:label="Plant" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ShippingType" Type="Edm.String" MaxLength="2" sap:label="Shipping Type" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ToTS" Type="Edm.String" MaxLength="19" sap:label="To TS" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="TZOffSet" Type="Edm.String" MaxLength="3" sap:label="TimeZone Offset" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="WhseFrom" Type="Edm.String" MaxLength="3" sap:label="Warehouse Number" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="WhseTo" Type="Edm.String" MaxLength="3" sap:label="Warehouse Number" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+            </EntityType>
+            <EntityType Name="ItemWeightUnit" sap:label="Unit of Weight (Master Data)" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ItemWeightUnit_ID"/>
+                </Key>
+                <Property Name="ItemWeightUnit_ID" Type="Edm.String" Nullable="false" MaxLength="3" sap:text="ItemWeightUnitText" sap:label="Unit of Weight" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ItemWeightUnitText" Type="Edm.String" sap:label="Unit of Weight (Description)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+            </EntityType>
+            <EntityType Name="ItemWeightUnitResult" sap:label="Unit of Weight (Booked Data)" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ItemWeightUnit"/>
+                </Key>
+                <Property Name="ItemWeightUnit" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Unit of Weight" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ProofOfDeliveryStatus" Type="Edm.String" MaxLength="1" sap:label="POD status" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Material" Type="Edm.String" MaxLength="40" sap:label="Material" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="MaterialGroup" Type="Edm.String" MaxLength="9" sap:label="Material Group" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="PurchaseOrder" Type="Edm.String" MaxLength="10" sap:label="Purchasing Document" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Division" Type="Edm.String" MaxLength="2" sap:label="Division" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="PurchaseOrderQuantityUnit" Type="Edm.String" MaxLength="3" sap:label="Order Unit" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ActualGoodsMovementTime" Type="Edm.String" MaxLength="6" sap:text="ActualGoodsMovementTime_T" sap:label="Goods Issue Time" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ActualGoodsMovementTime_T" Type="Edm.String" sap:label="Goods Issue Time (Description)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="YearMonth" Type="Edm.String" MaxLength="6" sap:label="Year Month" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Supplier" Type="Edm.String" MaxLength="10" sap:label="Supplier" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DeliveryQuantityUnit" Type="Edm.String" MaxLength="3" sap:label="Sales unit" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="PurchaseOrderType" Type="Edm.String" MaxLength="6" sap:label="Purchase Order Type" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DeliveryDocument" Type="Edm.String" MaxLength="10" sap:label="Delivery" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="PurchaseOrderItem" Type="Edm.String" MaxLength="5" sap:label="PO Item" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DeliveryDocumentItem" Type="Edm.String" MaxLength="6" sap:label="Item" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DeliveryDocumentBySupplier" Type="Edm.String" MaxLength="35" sap:label="External Delivery ID" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="StorageLocation" Type="Edm.String" MaxLength="4" sap:label="Storage Location" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ActualGoodsMovementDate" Type="Edm.String" MaxLength="10" sap:text="ActualGoodsMovementDate_T" sap:label="Act. Gds Mvmnt Date" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ActualGoodsMovementDate_T" Type="Edm.String" sap:label="Act. Gds Mvmnt Date (Description)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PurchaseOrderCategory" Type="Edm.String" MaxLength="1" sap:label="Purch. Doc. Category" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ShippingCondition" Type="Edm.String" MaxLength="2" sap:label="Shipping Cond" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="MovementIndicator" Type="Edm.String" MaxLength="1" sap:label="Movement indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DateofReceipt" Type="Edm.String" MaxLength="10" sap:text="DateofReceipt_T" sap:label="Act. Gds Mvmnt Date" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DateofReceipt_T" Type="Edm.String" sap:label="Act. Gds Mvmnt Date (Description)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DelyPlant" Type="Edm.String" MaxLength="4" sap:label="Plant" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DelySLoc" Type="Edm.String" MaxLength="4" sap:label="Storage location" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="FromTS" Type="Edm.String" MaxLength="19" sap:label="From TS" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="MaterialType" Type="Edm.String" MaxLength="4" sap:label="Material type" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Plant" Type="Edm.String" MaxLength="4" sap:label="Plant" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ShippingType" Type="Edm.String" MaxLength="2" sap:label="Shipping Type" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ToTS" Type="Edm.String" MaxLength="19" sap:label="To TS" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="TZOffSet" Type="Edm.String" MaxLength="3" sap:label="TimeZone Offset" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="WhseFrom" Type="Edm.String" MaxLength="3" sap:label="Warehouse Number" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="WhseTo" Type="Edm.String" MaxLength="3" sap:label="Warehouse Number" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+            </EntityType>
+            <EntityType Name="ODataQueryAdditionalMetadata" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ODataQueryMetadata"/>
+                </Key>
+                <Property Name="ODataQueryMetadata" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ODataQueryMetadataValue_Current" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ODataQueryMetadataValueAtDefine" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <Association Name="DivisionToListOfValues" sap:content-version="1">
+                <End Type="ZC_INBOUND_Q1_CDS.Division" Multiplicity="1" Role="FromRole_DivisionToListOfValues"/>
+                <End Type="ZC_INBOUND_Q1_CDS.ZC_INBOUND_Q1Type" Multiplicity="*" Role="ToRole_DivisionToListOfValues"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_DivisionToListOfValues">
+                        <PropertyRef Name="Division"/>
+                    </Principal>
+                    <Dependent Role="ToRole_DivisionToListOfValues">
+                        <PropertyRef Name="Division"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="PurchaseOrderTypeToListOfValues" sap:content-version="1">
+                <End Type="ZC_INBOUND_Q1_CDS.PurchaseOrderType" Multiplicity="1" Role="FromRole_PurchaseOrderTypeToListOfValues"/>
+                <End Type="ZC_INBOUND_Q1_CDS.ZC_INBOUND_Q1Type" Multiplicity="*" Role="ToRole_PurchaseOrderTypeToListOfValues"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_PurchaseOrderTypeToListOfValues">
+                        <PropertyRef Name="PurchaseOrderType"/>
+                    </Principal>
+                    <Dependent Role="ToRole_PurchaseOrderTypeToListOfValues">
+                        <PropertyRef Name="PurchaseOrderType"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="SupplierToListOfValues" sap:content-version="1">
+                <End Type="ZC_INBOUND_Q1_CDS.Supplier" Multiplicity="1" Role="FromRole_SupplierToListOfValues"/>
+                <End Type="ZC_INBOUND_Q1_CDS.ZC_INBOUND_Q1Type" Multiplicity="*" Role="ToRole_SupplierToListOfValues"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_SupplierToListOfValues">
+                        <PropertyRef Name="Supplier"/>
+                    </Principal>
+                    <Dependent Role="ToRole_SupplierToListOfValues">
+                        <PropertyRef Name="Supplier"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="YearMonthToListOfValues" sap:content-version="1">
+                <End Type="ZC_INBOUND_Q1_CDS.YearMonth" Multiplicity="1" Role="FromRole_YearMonthToListOfValues"/>
+                <End Type="ZC_INBOUND_Q1_CDS.ZC_INBOUND_Q1Type" Multiplicity="*" Role="ToRole_YearMonthToListOfValues"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_YearMonthToListOfValues">
+                        <PropertyRef Name="YearMonth"/>
+                    </Principal>
+                    <Dependent Role="ToRole_YearMonthToListOfValues">
+                        <PropertyRef Name="YearMonth"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="WhseToToListOfValues" sap:content-version="1">
+                <End Type="ZC_INBOUND_Q1_CDS.WhseTo" Multiplicity="1" Role="FromRole_WhseToToListOfValues"/>
+                <End Type="ZC_INBOUND_Q1_CDS.ZC_INBOUND_Q1Type" Multiplicity="*" Role="ToRole_WhseToToListOfValues"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_WhseToToListOfValues">
+                        <PropertyRef Name="WhseTo"/>
+                    </Principal>
+                    <Dependent Role="ToRole_WhseToToListOfValues">
+                        <PropertyRef Name="WhseTo"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ZC_INBOUND_Q1_CDS_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="Division" EntityType="ZC_INBOUND_Q1_CDS.Division" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="Supplier" EntityType="ZC_INBOUND_Q1_CDS.Supplier" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="YearMonth" EntityType="ZC_INBOUND_Q1_CDS.YearMonth" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="PurchaseOrderType" EntityType="ZC_INBOUND_Q1_CDS.PurchaseOrderType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ProofOfDeliveryStatus" EntityType="ZC_INBOUND_Q1_CDS.ProofOfDeliveryStatus" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ProofOfDeliveryStatusResults" EntityType="ZC_INBOUND_Q1_CDS.ProofOfDeliveryStatusResult" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="Material" EntityType="ZC_INBOUND_Q1_CDS.Material" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="MaterialResults" EntityType="ZC_INBOUND_Q1_CDS.MaterialResult" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="MaterialGroup" EntityType="ZC_INBOUND_Q1_CDS.MaterialGroup" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="MaterialGroupResults" EntityType="ZC_INBOUND_Q1_CDS.MaterialGroupResult" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="PurchaseOrder" EntityType="ZC_INBOUND_Q1_CDS.PurchaseOrder" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="PurchaseOrderResults" EntityType="ZC_INBOUND_Q1_CDS.PurchaseOrderResult" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="PurchaseOrderQuantityUnit" EntityType="ZC_INBOUND_Q1_CDS.PurchaseOrderQuantityUnit" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="PurchaseOrderQuantityUnitResults" EntityType="ZC_INBOUND_Q1_CDS.PurchaseOrderQuantityUnitResult" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="DeliveryQuantityUnit" EntityType="ZC_INBOUND_Q1_CDS.DeliveryQuantityUnit" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="DeliveryQuantityUnitResults" EntityType="ZC_INBOUND_Q1_CDS.DeliveryQuantityUnitResult" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="PurchaseOrderCategory" EntityType="ZC_INBOUND_Q1_CDS.PurchaseOrderCategory" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="PurchaseOrderCategoryResults" EntityType="ZC_INBOUND_Q1_CDS.PurchaseOrderCategoryResult" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="MovementIndicator" EntityType="ZC_INBOUND_Q1_CDS.MovementIndicator" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="MovementIndicatorResults" EntityType="ZC_INBOUND_Q1_CDS.MovementIndicatorResult" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ItemWeightUnit" EntityType="ZC_INBOUND_Q1_CDS.ItemWeightUnit" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ItemWeightUnitResults" EntityType="ZC_INBOUND_Q1_CDS.ItemWeightUnitResult" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="AdditionalMetadata" EntityType="ZC_INBOUND_Q1_CDS.ODataQueryAdditionalMetadata" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ZC_INBOUND_Q1" EntityType="ZC_INBOUND_Q1_CDS.ZC_INBOUND_Q1Type" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="WhseTo" EntityType="ZC_INBOUND_Q1_CDS.WhseTo" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <AssociationSet Name="WhseToToListOfValues_AssocSet" Association="ZC_INBOUND_Q1_CDS.WhseToToListOfValues" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="WhseTo" Role="FromRole_WhseToToListOfValues"/>
+                    <End EntitySet="ZC_INBOUND_Q1" Role="ToRole_WhseToToListOfValues"/>
+                </AssociationSet>
+                <AssociationSet Name="SupplierToListOfValues_AssocSet" Association="ZC_INBOUND_Q1_CDS.SupplierToListOfValues" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="Supplier" Role="FromRole_SupplierToListOfValues"/>
+                    <End EntitySet="ZC_INBOUND_Q1" Role="ToRole_SupplierToListOfValues"/>
+                </AssociationSet>
+                <AssociationSet Name="DivisionToListOfValues_AssocSet" Association="ZC_INBOUND_Q1_CDS.DivisionToListOfValues" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="Division" Role="FromRole_DivisionToListOfValues"/>
+                    <End EntitySet="ZC_INBOUND_Q1" Role="ToRole_DivisionToListOfValues"/>
+                </AssociationSet>
+                <AssociationSet Name="PurchaseOrderTypeToListOfValues_AssocSet" Association="ZC_INBOUND_Q1_CDS.PurchaseOrderTypeToListOfValues" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="PurchaseOrderType" Role="FromRole_PurchaseOrderTypeToListOfValues"/>
+                    <End EntitySet="ZC_INBOUND_Q1" Role="ToRole_PurchaseOrderTypeToListOfValues"/>
+                </AssociationSet>
+                <AssociationSet Name="YearMonthToListOfValues_AssocSet" Association="ZC_INBOUND_Q1_CDS.YearMonthToListOfValues" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="YearMonth" Role="FromRole_YearMonthToListOfValues"/>
+                    <End EntitySet="ZC_INBOUND_Q1" Role="ToRole_YearMonthToListOfValues"/>
+                </AssociationSet>
+            </EntityContainer>
+            <Annotations Target="ZC_INBOUND_Q1_CDS.ZC_INBOUND_Q1Type/WhseTo" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Warehouse Number"/>
+                        <PropertyValue Property="CollectionPath" String="WhseTo"/>
+                        <PropertyValue Property="SearchSupported" Bool="false"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="WhseTo"/>
+                                    <PropertyValue Property="ValueListProperty" String="WhseTo"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="WhseToText"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZC_INBOUND_Q1_CDS.ZC_INBOUND_Q1Type/Division" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Division"/>
+                        <PropertyValue Property="CollectionPath" String="Division"/>
+                        <PropertyValue Property="SearchSupported" Bool="false"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="Division"/>
+                                    <PropertyValue Property="ValueListProperty" String="Division"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="DivisionText"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZC_INBOUND_Q1_CDS.ZC_INBOUND_Q1Type/Supplier" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Supplier"/>
+                        <PropertyValue Property="CollectionPath" String="Supplier"/>
+                        <PropertyValue Property="SearchSupported" Bool="false"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="Supplier"/>
+                                    <PropertyValue Property="ValueListProperty" String="Supplier"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="SupplierText"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZC_INBOUND_Q1_CDS.ZC_INBOUND_Q1Type/YearMonth" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Year Month"/>
+                        <PropertyValue Property="CollectionPath" String="YearMonth"/>
+                        <PropertyValue Property="SearchSupported" Bool="false"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="YearMonth"/>
+                                    <PropertyValue Property="ValueListProperty" String="YearMonth"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="YearMonthText"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZC_INBOUND_Q1_CDS.ZC_INBOUND_Q1Type/PurchaseOrderType" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Purchase Order Type"/>
+                        <PropertyValue Property="CollectionPath" String="PurchaseOrderType"/>
+                        <PropertyValue Property="SearchSupported" Bool="false"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="PurchaseOrderType"/>
+                                    <PropertyValue Property="ValueListProperty" String="PurchaseOrderType"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="PurchaseOrderTypeText"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZC_INBOUND_Q1_CDS.ZC_INBOUND_Q1Type/ProofOfDeliveryStatus" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="POD status ( Master Data )"/>
+                        <PropertyValue Property="CollectionPath" String="ProofOfDeliveryStatus"/>
+                        <PropertyValue Property="SearchSupported" Bool="false"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="ProofOfDeliveryStatus"/>
+                                    <PropertyValue Property="ValueListProperty" String="ProofOfDeliveryStatus_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="ProofOfDeliveryStatusText"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZC_INBOUND_Q1_CDS.ZC_INBOUND_Q1Type/Material" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Material ( Master Data )"/>
+                        <PropertyValue Property="CollectionPath" String="Material"/>
+                        <PropertyValue Property="SearchSupported" Bool="false"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="Material"/>
+                                    <PropertyValue Property="ValueListProperty" String="Material_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="MaterialText"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZC_INBOUND_Q1_CDS.ZC_INBOUND_Q1Type/MaterialGroup" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Material Group ( Master Data )"/>
+                        <PropertyValue Property="CollectionPath" String="MaterialGroup"/>
+                        <PropertyValue Property="SearchSupported" Bool="false"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="MaterialGroup"/>
+                                    <PropertyValue Property="ValueListProperty" String="MaterialGroup_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="MaterialGroupText"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZC_INBOUND_Q1_CDS.ZC_INBOUND_Q1Type/PurchaseOrder" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Purchasing Document ( Master Data )"/>
+                        <PropertyValue Property="CollectionPath" String="PurchaseOrder"/>
+                        <PropertyValue Property="SearchSupported" Bool="false"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="PurchaseOrder"/>
+                                    <PropertyValue Property="ValueListProperty" String="PurchaseOrder_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="PurchaseOrderText"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZC_INBOUND_Q1_CDS.ZC_INBOUND_Q1Type/PurchaseOrderQuantityUnit" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Order Unit ( Master Data )"/>
+                        <PropertyValue Property="CollectionPath" String="PurchaseOrderQuantityUnit"/>
+                        <PropertyValue Property="SearchSupported" Bool="false"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="PurchaseOrderQuantityUnit"/>
+                                    <PropertyValue Property="ValueListProperty" String="PurchaseOrderQuantityUnit_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="PurchaseOrderQuantityUnitText"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZC_INBOUND_Q1_CDS.ZC_INBOUND_Q1Type/DeliveryQuantityUnit" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Sales unit ( Master Data )"/>
+                        <PropertyValue Property="CollectionPath" String="DeliveryQuantityUnit"/>
+                        <PropertyValue Property="SearchSupported" Bool="false"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="DeliveryQuantityUnit"/>
+                                    <PropertyValue Property="ValueListProperty" String="DeliveryQuantityUnit_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="DeliveryQuantityUnitText"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZC_INBOUND_Q1_CDS.ZC_INBOUND_Q1Type/PurchaseOrderCategory" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Purch. Doc. Category ( Master Data )"/>
+                        <PropertyValue Property="CollectionPath" String="PurchaseOrderCategory"/>
+                        <PropertyValue Property="SearchSupported" Bool="false"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="PurchaseOrderCategory"/>
+                                    <PropertyValue Property="ValueListProperty" String="PurchaseOrderCategory_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="PurchaseOrderCategoryText"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZC_INBOUND_Q1_CDS.ZC_INBOUND_Q1Type/MovementIndicator" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Movement indicator ( Master Data )"/>
+                        <PropertyValue Property="CollectionPath" String="MovementIndicator"/>
+                        <PropertyValue Property="SearchSupported" Bool="false"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="MovementIndicator"/>
+                                    <PropertyValue Property="ValueListProperty" String="MovementIndicator_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="MovementIndicatorText"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZC_INBOUND_Q1_CDS.ZC_INBOUND_Q1Type/ItemWeightUnit" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Unit of Weight ( Master Data )"/>
+                        <PropertyValue Property="CollectionPath" String="ItemWeightUnit"/>
+                        <PropertyValue Property="SearchSupported" Bool="false"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="ItemWeightUnit"/>
+                                    <PropertyValue Property="ValueListProperty" String="ItemWeightUnit_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="ItemWeightUnitText"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <atom:link rel="self" href="https://w4dwdp30.smr.sap.sandvik.com:443/sap/opu/odata/sap/ZC_INBOUND_Q1_CDS/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="https://w4dwdp30.smr.sap.sandvik.com:443/sap/opu/odata/sap/ZC_INBOUND_Q1_CDS/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

@@ -1,0 +1,248 @@
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common" />
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI" />
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Communication.xml">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication" />
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/sap/ZC_INBOUND_Q1_CDS/$metadata">
+        <edmx:Include Namespace="ZC_INBOUND_Q1_CDS" />
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="smcl.sf.wm.zz1_wm_inbdq1">
+            <Annotations Target="ZC_INBOUND_Q1_CDS.ZC_INBOUND_Q1Type">
+                <Annotation Term="UI.SelectionFields">
+                    <Collection>
+                        <PropertyPath>WhseTo</PropertyPath>
+                        <PropertyPath>Division</PropertyPath>
+                        <PropertyPath>Supplier</PropertyPath>
+                        <PropertyPath>YearMonth</PropertyPath>
+                        <PropertyPath>PurchaseOrder</PropertyPath>
+                        <PropertyPath>DeliveryDocument</PropertyPath>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.Chart">
+                    <Record Type="UI.ChartDefinitionType">
+                        <PropertyValue Property="Title" String="{@i18n>whInboundPerformanceFiori}" />
+                        <PropertyValue Property="Description" String="{@i18n>whInboundPerformanceScorecard}" />
+                        <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Column" />
+                        <PropertyValue Property="Dimensions">
+                            <Collection>
+                                <PropertyPath>YearMonth</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Measures">
+                            <Collection>
+                                <PropertyPath>OnTimeCnt</PropertyPath>
+                                <PropertyPath>SameCnt</PropertyPath>
+                                <PropertyPath>LateCnt</PropertyPath>
+                                <PropertyPath>Late1D</PropertyPath>
+                                <PropertyPath>Late3D7</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="WhseTo" />
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="PurchaseOrderItem" />
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="PurchaseOrder" />
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="YearMonth" />
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="DeliveryDocument" />
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="{@i18n>ActualDeliveryQuantity}" />
+                            <PropertyValue Property="Value" Path="ActualDeliveryQuantity" />
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="{@i18n>FromTS}" />
+                            <PropertyValue Property="Value" Path="FromTS" />
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="{@i18n>ToTS}" />
+                            <PropertyValue Property="Value" Path="ToTS" />
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="{@i18n>OnTimeCnt}" />
+                            <PropertyValue Property="Value" Path="OnTimeCnt" />
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="{@i18n>OnTimePct}" />
+                            <PropertyValue Property="Value" Path="OnTimePct" />
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="{@i18n>SameCnt}" />
+                            <PropertyValue Property="Value" Path="SameCnt" />
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="{@i18n>SamePct}" />
+                            <PropertyValue Property="Value" Path="SamePct" />
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="{@i18n>Late1D}" />
+                            <PropertyValue Property="Value" Path="Late1D" />
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="{@i18n>Late1DPct}" />
+                            <PropertyValue Property="Value" Path="Late1DPct" />
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="{@i18n>Late3D7}" />
+                            <PropertyValue Property="Value" Path="Late3D7" />
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="{@i18n>Late3D7Pct}" />
+                            <PropertyValue Property="Value" Path="Late3D7Pct" />
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="{@i18n>Late8D}" />
+                            <PropertyValue Property="Value" Path="Late8D" />
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="{@i18n>Late8DPct}" />
+                            <PropertyValue Property="Value" Path="Late8DPct" />
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="{@i18n>DaysLate}" />
+                            <PropertyValue Property="Value" Path="DaysLate" />
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="{@i18n>LateCnt}" />
+                            <PropertyValue Property="Value" Path="LateCnt" />
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="{@i18n>LatePct}" />
+                            <PropertyValue Property="Value" Path="LatePct" />
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="{@i18n>No_PODCnt}" />
+                            <PropertyValue Property="Value" Path="No_PODCnt" />
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High" />
+                        </Record>
+
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="ActualGoodsMovementDate" />
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="AvgDaysLate" />
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="MAReturnCnt" />
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High" />
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZC_INBOUND_Q1_CDS.ZC_INBOUND_Q1Type">
+                <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextSeparate" />
+            </Annotations>
+            <Annotations Target="ZC_INBOUND_Q1_CDS.ZC_INBOUND_Q1Type/LineCount_F">
+                <Annotation Term="UI.Hidden" Bool="true" />
+            </Annotations>
+            <Annotations Target="ZC_INBOUND_Q1_CDS.ZC_INBOUND_Q1Type/ActualDeliveryQuantity_F">
+                <Annotation Term="UI.Hidden" Bool="true" />
+            </Annotations>
+            <Annotations Target="ZC_INBOUND_Q1_CDS.ZC_INBOUND_Q1Type/AvgDaysLate_F">
+                <Annotation Term="UI.Hidden" Bool="true" />
+            </Annotations>
+            <Annotations Target="ZC_INBOUND_Q1_CDS.ZC_INBOUND_Q1Type/DaysLate_F">
+                <Annotation Term="UI.Hidden" Bool="true" />
+            </Annotations>
+            <Annotations Target="ZC_INBOUND_Q1_CDS.ZC_INBOUND_Q1Type/Late1DPct_F">
+                <Annotation Term="UI.Hidden" Bool="true" />
+            </Annotations>
+            <Annotations Target="ZC_INBOUND_Q1_CDS.ZC_INBOUND_Q1Type/Late1D_F">
+                <Annotation Term="UI.Hidden" Bool="true" />
+            </Annotations>
+            <Annotations Target="ZC_INBOUND_Q1_CDS.ZC_INBOUND_Q1Type/Late3D7Pct_F">
+                <Annotation Term="UI.Hidden" Bool="true" />
+            </Annotations>
+            <Annotations Target="ZC_INBOUND_Q1_CDS.ZC_INBOUND_Q1Type/Late3D7_F">
+                <Annotation Term="UI.Hidden" Bool="true" />
+            </Annotations>
+            <Annotations Target="ZC_INBOUND_Q1_CDS.ZC_INBOUND_Q1Type/Late8DPct_F">
+                <Annotation Term="UI.Hidden" Bool="true" />
+            </Annotations>
+            <Annotations Target="ZC_INBOUND_Q1_CDS.ZC_INBOUND_Q1Type/Late8D_F">
+                <Annotation Term="UI.Hidden" Bool="true" />
+            </Annotations>
+            <Annotations Target="ZC_INBOUND_Q1_CDS.ZC_INBOUND_Q1Type/LateCnt_F">
+                <Annotation Term="UI.Hidden" Bool="true" />
+            </Annotations>
+            <Annotations Target="ZC_INBOUND_Q1_CDS.ZC_INBOUND_Q1Type/LatePct_F">
+                <Annotation Term="UI.Hidden" Bool="true" />
+            </Annotations>
+            <Annotations Target="ZC_INBOUND_Q1_CDS.ZC_INBOUND_Q1Type/MAReturnCnt_F">
+                <Annotation Term="UI.Hidden" Bool="true" />
+            </Annotations>
+            <Annotations Target="ZC_INBOUND_Q1_CDS.ZC_INBOUND_Q1Type/No_PODCnt_F">
+                <Annotation Term="UI.Hidden" Bool="true" />
+            </Annotations>
+            <Annotations Target="ZC_INBOUND_Q1_CDS.ZC_INBOUND_Q1Type/OnTimeCnt_F">
+                <Annotation Term="UI.Hidden" Bool="true" />
+            </Annotations>
+            <Annotations Target="ZC_INBOUND_Q1_CDS.ZC_INBOUND_Q1Type/OnTimePct_F">
+                <Annotation Term="UI.Hidden" Bool="true" />
+            </Annotations>
+            <Annotations Target="ZC_INBOUND_Q1_CDS.ZC_INBOUND_Q1Type/OrderQuantity_F">
+                <Annotation Term="UI.Hidden" Bool="true" />
+            </Annotations>
+            <Annotations Target="ZC_INBOUND_Q1_CDS.ZC_INBOUND_Q1Type/POItmWeight_F">
+                <Annotation Term="UI.Hidden" Bool="true" />
+            </Annotations>
+            <Annotations Target="ZC_INBOUND_Q1_CDS.ZC_INBOUND_Q1Type/SameCnt_F">
+                <Annotation Term="UI.Hidden" Bool="true" />
+            </Annotations>
+            <Annotations Target="ZC_INBOUND_Q1_CDS.ZC_INBOUND_Q1Type/SamePct_F">
+                <Annotation Term="UI.Hidden" Bool="true" />
+            </Annotations>
+            <Annotations Target="ZC_INBOUND_Q1_CDS.ZC_INBOUND_Q1Type/ID">
+                <Annotation Term="UI.Hidden" Bool="true" />
+            </Annotations>
+            <Annotations Target="ZC_INBOUND_Q1_CDS.ZC_INBOUND_Q1Type/ActualGoodsMovementTime_T">
+                <Annotation Term="UI.Hidden" Bool="true" />
+            </Annotations>
+            <Annotations Target="ZC_INBOUND_Q1_CDS.ZC_INBOUND_Q1Type/ActualGoodsMovementDate_T">
+                <Annotation Term="UI.Hidden" Bool="true" />
+            </Annotations>
+            <Annotations Target="ZC_INBOUND_Q1_CDS.ZC_INBOUND_Q1Type/DateofReceipt_T">
+                <Annotation Term="UI.Hidden" Bool="true" />
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

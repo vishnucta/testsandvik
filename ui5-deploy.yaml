@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: '2.4'
+metadata:
+  name: 'zz1_wm_inbdq1'
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          destination: S4D
+          url: http://w4dwdp30.smr.sap.sandvik.com:443
+        app:
+          name: ZZ1_WM_INBDQ1
+          description: WH Inbound Performance Fiori Customiz
+          package: Z_DEV_WM
+          transport: S4DK906177
